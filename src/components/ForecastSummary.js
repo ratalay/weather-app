@@ -12,7 +12,8 @@ const ForecastSummary = (props) => {
         {temperature.max}&deg;C
       </div>
     </div>
-  )};
+  );
+};
 
 ForecastSummary.propTypes = {
   date: PropTypes.number.isRequired,
@@ -23,3 +24,5 @@ ForecastSummary.propTypes = {
     max: PropTypes.number,
   }).isRequired,
 };
+
+export default ForecastSummary;

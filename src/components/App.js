@@ -4,22 +4,25 @@ import PropTypes from "prop-types";
 import LocationDetails from "./LocationDetails";
 import ForecastSummaries from "./ForecastSummaries";
 
-const App = (props) => {
-  const { location } = props;
-  return (
-    <div className="App">
-      <LocationDetails
-        // eslint-disable-next-line react/destructuring-assignment
-        city={location.city}
-        // eslint-disable-next-line react/destructuring-assignment
-        country={location.country}
-      />
-      <ForecastSummaries />
-    </div>
-  );
-};
+const App = ({ location, forecasts }) => (
+  <div className="forecast">
+    <LocationDetails city={location.city} country={location.country} />
+    <ForecastSummaries forecasts={forecasts} />
+  </div>
+);
 
 App.propTypes = {
+  forecasts: PropTypes.arrayOf(
+    PropTypes.shape({
+      date: PropTypes.number,
+      description: PropTypes.string,
+      icon: PropTypes.number,
+      temperature: PropTypes.shape({
+        max: PropTypes.number,
+        min: PropTypes.number,
+      }),
+    })
+  ).isRequired,
   location: PropTypes.shape({
     city: PropTypes.string,
     country: PropTypes.string,
